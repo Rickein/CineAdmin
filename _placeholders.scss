@@ -1,0 +1,13 @@
+@use "variaveis";
+
+%flexivel-centralizado {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+%fundo-pagina{
+    background: variaveis.$cor-azul-claro;
+    background: linear-gradient(0deg, variaveis.$cor-azul-claro 0%, variaveis.$cor-azul-escuro 100%);
+}

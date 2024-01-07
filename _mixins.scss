@@ -1,0 +1,4 @@
+@mixin tamanho_letra_e_cor($tamanho, $cor) {
+    font-size: $tamanho;
+    color: $cor;
+}
