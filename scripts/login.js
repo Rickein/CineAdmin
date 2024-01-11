@@ -4,18 +4,23 @@ const database = supabase.createClient(url, key);
 
 function AutenticarLogin() {
 
+    $('.body-loader').toggle();
+
     let email = $('#emailLogin').val();
     let senha = $('#senhaLogin').val();
 
     if (email == "" || senha == "") {
+
+        $('.body-loader').toggle();
 
         Swal.fire({
             title: "Login e/ou senha não informado",
             text: "Verifique seus dados e tente novamente",
             icon: "info"
         });
-    }
+        return
 
+    }
     GetLogin(email, senha);
 }
 
@@ -27,43 +32,64 @@ async function GetLogin(email, senha) {
             password: senha,
         })
 
-        if (error) { 
-            Swal.fire({
-                title: "Algo deu errado!",
-                text: error,
-                icon: "error"
-            });
-        }
-    console.log(data);
-}
+    if (error) {
 
-async function PostUser(email,senha) {
-    const { error, data } = await database.auth.signUp({
-        email: email,
-        password: senha,
-    })
+        $('.body-loader').toggle();
 
-    if (error) { 
         Swal.fire({
             title: "Algo deu errado!",
             text: error,
             icon: "error"
         });
+        return
     }
-    else{    
+
+    else {
+
+        $('.body-loader').toggle();
+        console.log("Usuario autenticado: " + data);
+        window.location.href = window.location.href.replace('Login', 'Filmes');
+    }
+    //redirecionar aqui 
+}
+
+async function PostUser(email, senha) {
+
+    const { error, data } = await database.auth.signUp({
+        email: email,
+        password: senha,
+    })
+
+    if (error) {
+
+        $('.body-loader').toggle();
+
+        Swal.fire({
+            title: "Algo deu errado!",
+            text: error,
+            icon: "error"
+        });
+
+        return
+    }
+    else {
+
+        $('.body-loader').toggle();
+
         Swal.fire({
             icon: "success",
             title: "Usuario Criado com Sucesso !",
-            text:"Verifique sua Caixa de Email para ativar sua conta",
+            text: "Verifique sua Caixa de Email para ativar sua conta",
             showConfirmButton: false,
-            timer: 2000
+            timer: 4000
         });
 
         $('#modal-cadastro').modal('toggle');
-        nome[0].value = ""
-        senha[0].value = ""
-        email[0].value = ""
 
+        $('#NovaSenha')[0].value = "";
+        $('#NovoEmail')[0].value = "";
+
+        let button = $('#btn-novo');
         button.attr('disabled', false)
         button[0].innerHTML = 'Criar'
 
@@ -76,16 +102,11 @@ async function NovoUsuario() {
     let senha = $('#NovaSenha').val();
     let email = $('#NovoEmail').val();
 
-    if(senha.length < 6){
-        Swal.fire({
-            title: "Sua senha esta fraca",
-            text: "utilize uma senha com no minimo 6 caracteres",
-            icon: "info"
-        });
-        return
-    }
+    $('.body-loader').toggle();
 
     if (senha == "" || email == "") {
+        $('.body-loader').toggle();
+
         Swal.fire({
             title: "Existem campos não informados",
             text: "Verifique seus dados e tente novamente",
@@ -94,9 +115,24 @@ async function NovoUsuario() {
         return
     }
 
+
+    if (senha.length < 6) {
+
+        $('.body-loader').toggle();
+
+        Swal.fire({
+            title: "Sua senha esta fraca",
+            text: "utilize uma senha com no minimo 6 caracteres",
+            icon: "info"
+        });
+        return
+    }
+
+
     let button = $('#btn-novo');
     button.attr('disabled', true)
     button[0].innerHTML = 'Criando..'
-    const resp =  await PostUser(email,senha);
+
+    const resp = await PostUser(email, senha);
 }
 
