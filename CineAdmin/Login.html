@@ -4,9 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cine Admin Auth</title>
+  <title>Cine Admin Login</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
 </head>
 
@@ -15,9 +16,13 @@
     <div class="card">
       <form id="login">
         <h2>Cine Admin</h2>
-        <input class="campo" type="email" id='emailLogin' placeholder="digite seu e-mail" />
-        <input class="campo" type="password" id="senhaLogin" placeholder="digite sua senha" />
-        <input class="btn" type="button" id="btn-login" value="acessar" onclick="AutenticarLogin();"></input>
+
+        <label for="email">Email:</label>
+        <input class="campo" type="email" id='emailLogin' placeholder="digite seu e-mail" name="email" />
+
+        <label for="senha">Senha:</label>
+        <input class="campo" type="password" id="senhaLogin" placeholder="digite sua senha" name="senha"/>
+        <input class="btn" type="button" id="btn-login" value="Acessar" onclick="AutenticarLogin();"></input>
         <p>Ainda não tem uma conta ? <a href="#" data-toggle="modal" data-target="#modal-cadastro">Crie uma
             agora</a></p>
       </form>
@@ -27,7 +32,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Novo Usuario</h5>
+            <h5 class="modal-title" id="">Novo Usuario</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -35,8 +40,11 @@
           <div class="modal-body">
             <form id="novo_cadastro">
               <!-- <input class="campo" id="NovoNome" type="text" placeholder="Seu nome" /> -->
-              <input class="campo" type="email" id="NovoEmail" placeholder="digite seu e-mail" />
-              <input class="campo" type="password" id="NovaSenha" placeholder="digite sua senha" />
+              <label for="email">E-mail:</label>
+              <input class="campo" type="email" id="NovoEmail" placeholder="digite seu e-mail" name="email" />
+
+              <label for="senha">senha:</label>
+              <input class="campo" type="password" id="NovaSenha" placeholder="digite sua senha" name="senha" />
             </form>
           </div>
           <div class="modal-footer">

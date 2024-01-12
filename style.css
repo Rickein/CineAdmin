@@ -1,33 +1,33 @@
-body .page, body .page .modal .modal-footer {
+body .body-loader, body .page, body .container-filmes .lista-de-Filmes .card .informacoes-adicionais .duracao,
+body .container-filmes .lista-de-Filmes .card .informacoes-adicionais .ano-lancamento, body .container-filmes .lista-de-Filmes .card .btn-card, body .modal-content .modal-footer {
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: center;
 }
 
-body .page {
-  background: rgb(34, 193, 195);
-  background: linear-gradient(0deg, rgb(34, 193, 195) 0%, rgb(45, 117, 253) 100%);
+body form {
+  display: flex;
+  flex-direction: column;
+}
+
+body .container-filmes .lista-de-Filmes .card .sessao-1, body .container-filmes .lista-de-Filmes .card .sessao-1 .nota, body .container-filmes .lista-de-Filmes .card .informacoes-adicionais, body .container-filmes .lista-de-Filmes .card .informacoes-adicionais button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 body {
-  padding: 0;
-  font-family: "inter", sans-serif;
-}
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-body .body-loader {
-  width: 100%;
+  border: 2px solid var(--Gradientes-Gradiente-Logo, #9747FF);
+  background: var(--Cores-Cinza-Dark, #1E1F28);
+  box-shadow: 0px -3px 22px 0px rgba(0, 0, 0, 0.35);
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  padding: 0;
+  font-family: Outfit;
+}
+
+body .body-loader {
   position: fixed;
   top: 0;
   right: 0;
@@ -36,6 +36,7 @@ body .body-loader {
   z-index: 1050;
   background-color: rgba(89, 86, 86, 0.5803921569);
 }
+
 body .body-loader .loader {
   width: 100px;
   padding: 8px;
@@ -56,45 +57,128 @@ body .body-loader .loader {
     transform: rotate(1turn);
   }
 }
+
+body .container-filmes .lista-de-Filmes .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+  width: min-content;
+  background: #1E1F28;
+  border: none;
+  max-width: 200px;
+}
+
+body .page .card {
+  border: 2px solid var(--Gradientes-Gradiente-Logo, #9747FF);
+  padding: 34px;
+  border-radius: 10px;
+  background-color: #343a40;
+  width: 50%;
+  max-width: 450px;
+  color: aliceblue;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+body .body-loader {
+  width: 100%;
+  height: 100%;
+}
 body .page {
   width: 100%;
   height: 100vh;
 }
-body .page .btn {
-  padding: 15px;
-  border: none;
-  color: aliceblue;
-  border-radius: 7px;
-  font-weight: 600;
-  margin-top: 20px;
-  background-color: rgb(45, 117, 253);
-  cursor: pointer;
-  transition: all linear 190ms;
+body aside .menu {
+  background-color: black;
 }
-body .page .btn:hover {
-  transform: scale(1.05);
-  background-color: rgb(19, 97, 243);
+body aside .menu .navbar-logo {
+  font-size: 50px;
 }
-body .page p {
-  font-size: 0.9rem;
-  color: #666;
+body aside .menu .collapse .navbar-item {
+  font-size: 25px;
 }
-body .page a {
-  font-size: 0.9rem;
-  color: rgb(19, 97, 243);
-  text-decoration: none;
+body aside .menu .collapse button {
+  background: black;
 }
-body .page h2 {
-  font-weight: 600;
-  font-size: 1.8rem;
-  color: #444;
+body .container-filmes {
+  margin: 4%;
 }
-body .page form {
+body .container-filmes .lista-de-Filmes {
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 36px;
+}
+body .container-filmes .lista-de-Filmes .card .sessao-1 {
+  align-self: stretch;
+}
+body .container-filmes .lista-de-Filmes .card .sessao-1 .titulo {
+  font-size: 16px;
+  color: var(--Cores-Branco, #FFF);
+  white-space: nowrap;
+  line-height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body .container-filmes .lista-de-Filmes .card .sessao-1 .nota {
+  font-size: 20px;
+  color: var(--Cores-Amarelo, #FEEA35);
+  line-height: 14.408px;
+  gap: 10px;
+}
+body .container-filmes .lista-de-Filmes .card .poster {
+  border-radius: 10px;
+  width: 194px;
+  height: 288px;
+}
+body .container-filmes .lista-de-Filmes .card .poster:hover {
+  opacity: 0.8;
+}
+body .container-filmes .lista-de-Filmes .card .informacoes-adicionais {
+  font-size: 12px;
+  color: var(--Cores-Cinza-Light, #8B8D9B);
+  width: 100%;
+}
+body .container-filmes .lista-de-Filmes .card .informacoes-adicionais .duracao,
+body .container-filmes .lista-de-Filmes .card .informacoes-adicionais .ano-lancamento {
+  gap: 4px;
+}
+body .container-filmes .lista-de-Filmes .card .informacoes-adicionais button {
   gap: 5px;
 }
-body .page form .campo {
+body .container-filmes .lista-de-Filmes .card .informacoes-adicionais img {
+  width: 20px;
+  height: 20px;
+}
+body .container-filmes .lista-de-Filmes .card .btn-card {
+  gap: 15px;
+  width: 100%;
+  border-radius: 4px;
+  background: var(--Cores-Cinza, #2B2B37);
+  cursor: pointer;
+  border: none;
+}
+body .container-filmes .lista-de-Filmes .card .btn-card:hover {
+  background-color: #343a40;
+}
+body .container-filmes .lista-de-Filmes .card .btn-card p {
+  font-size: 16px;
+  color: var(--Cores-Branco, #FFF);
+  text-wrap: nowrap;
+  padding-top: 15px;
+}
+body form {
+  gap: 1px;
+}
+body form .campo {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 7px;
@@ -104,26 +188,78 @@ body .page form .campo {
   font-size: 0.9rem;
   color: #444;
 }
-body .page form .campo::placeholder {
+body form .campo::placeholder {
   color: #666;
 }
-body .page form .campo:focus {
+body form .campo:focus {
   border-color: rgb(34, 193, 195);
 }
-body .page .card {
-  background-color: aliceblue;
-  padding: 34px;
-  border-radius: 10px;
-  box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.3);
-  width: 50%;
-  max-width: 450px;
+body form input[type=file] {
+  border: none;
+  color: aliceblue;
 }
-body .page .modal {
-  border-radius: 10px;
+body .btn {
+  background-color: #1E1F28;
+  padding: 15px;
+  border: none;
+  color: aliceblue;
+  border-radius: 7px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: all linear 190ms;
 }
-body .page .modal .modal-footer .btn-novo {
+body .btn:hover {
+  transform: scale(1.05);
+}
+body .hidden {
+  opacity: -0.5;
+  color: #1E1F28;
+  background-color: #1E1F28;
+}
+body .grow {
+  transition: all 0.2s ease-in-out;
+}
+body .grow:hover {
+  transform: scale(1.2);
+}
+body span {
+  color: aliceblue;
+}
+body .modal-content {
+  border-radius: 10px;
+  border: 2px solid var(--Gradientes-Gradiente-Logo, #9747FF);
+  border-radius: 10px;
+  background-color: #343a40;
+  color: aliceblue;
+}
+body .modal-content .modal-body,
+body .modal-content .modal-header,
+body .modal-content .modal-footer {
+  border: none;
+}
+body .modal-content .modal-footer .btn-novo {
   width: 100%;
   margin-top: 0;
+}
+body p {
+  font-size: 0.9rem;
+  color: aliceblue;
+  text-align: center;
+  text-decoration: none;
+}
+body a {
+  font-size: 0.9rem;
+  color: #9747FF;
+}
+body h2 {
+  font-size: 1.8rem;
+  color: aliceblue;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

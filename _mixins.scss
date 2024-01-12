@@ -1,4 +1,22 @@
+@use "placeholders";
+
 @mixin tamanho_letra_e_cor($tamanho, $cor) {
     font-size: $tamanho;
     color: $cor;
+}
+
+@mixin width_height($largura,$altura){
+    width: $largura;
+    height: $altura;
+}
+
+
+@mixin flexivel-space-between-gap($gap){
+    @extend %flexivel-space-between;
+    gap:$gap;
+}
+
+@mixin flexivel-centralizado-gap($gap){
+    @extend %flexivel-centralizado;
+    gap:$gap;
 }
