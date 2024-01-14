@@ -7,28 +7,32 @@
     justify-content: center;
 }
 
-%flexivel-coluna{
+%flexivel-coluna {
     display: flex;
     flex-direction: column;
 }
 
-%flexivel-space-between{
+%flexivel-space-between {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-%fundo-pagina{
+%fundo-pagina {
     border: 2px solid var(--Gradientes-Gradiente-Logo, variaveis.$cor-rosa);
     background: var(--Cores-Cinza-Dark, #1E1F28);
     box-shadow: 0px -3px 22px 0px rgba(0, 0, 0, 0.35);
-    height: 100%;
+    height: 100vh;
     width: 100%;
     padding: 0;
     font-family: Outfit;
+
+    @media (max-width: 767px) {
+        height: 100%;
+    }
 }
 
-%corpo-carregamento{
+%corpo-carregamento {
     position: fixed;
     top: 0;
     right: 0;
@@ -38,7 +42,7 @@
     background-color: #59565694;
 }
 
-%carregamento{
+%carregamento {
 
     .loader {
         width: 100px;
@@ -63,11 +67,11 @@
     }
 }
 
-%card-filme{
+%card-filme {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;   
+    align-items: flex-start;
     gap: 5px;
     width: min-content;
     background: variaveis.$cor-preto-claro;
@@ -75,7 +79,7 @@
     max-width: 200px;
 }
 
-%card-login{
+%card-login {
     border: 2px solid var(--Gradientes-Gradiente-Logo, #9747FF);
     padding: 34px;
     border-radius: 10px;
@@ -84,4 +88,10 @@
     width: 50%;
     max-width: 450px;
     color: variaveis.$cor-branco;
+
+    @media (max-width: 767px) {
+        width: 80%;
+        padding: 20px;
+    }
+
 }

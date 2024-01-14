@@ -21,10 +21,15 @@ body {
   border: 2px solid var(--Gradientes-Gradiente-Logo, #9747FF);
   background: var(--Cores-Cinza-Dark, #1E1F28);
   box-shadow: 0px -3px 22px 0px rgba(0, 0, 0, 0.35);
-  height: 100%;
+  height: 100vh;
   width: 100%;
   padding: 0;
   font-family: Outfit;
+}
+@media (max-width: 767px) {
+  body {
+    height: 100%;
+  }
 }
 
 body .body-loader {
@@ -79,6 +84,12 @@ body .page .card {
   max-width: 450px;
   color: aliceblue;
 }
+@media (max-width: 767px) {
+  body .page .card {
+    width: 80%;
+    padding: 20px;
+  }
+}
 
 @keyframes rotation {
   0% {
@@ -94,7 +105,7 @@ body .body-loader {
 }
 body .page {
   width: 100%;
-  height: 100vh;
+  height: 98vh;
 }
 body aside .menu {
   background-color: black;
@@ -102,11 +113,26 @@ body aside .menu {
 body aside .menu .navbar-logo {
   font-size: 50px;
 }
+@media (max-width: 767px) {
+  body aside .menu .navbar-logo {
+    font-size: 40px;
+  }
+}
 body aside .menu .collapse .navbar-item {
   font-size: 25px;
 }
 body aside .menu .collapse button {
   background: black;
+}
+@media (max-width: 767px) {
+  body aside .menu .collapse form {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+  body aside .menu .collapse form button {
+    padding: 0;
+  }
 }
 body .container-filmes {
   margin: 4%;
@@ -116,6 +142,15 @@ body .container-filmes .lista-de-Filmes {
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 36px;
+}
+@media (max-width: 767px) {
+  body .container-filmes .lista-de-Filmes {
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+  }
 }
 body .container-filmes .lista-de-Filmes .card .sessao-1 {
   align-self: stretch;
@@ -194,9 +229,52 @@ body form .campo::placeholder {
 body form .campo:focus {
   border-color: rgb(34, 193, 195);
 }
+@media (max-width: 767px) {
+  body form .campo {
+    font-size: 1rem;
+    color: #444;
+  }
+}
+@media (max-width: 767px) {
+  body form .link-modal {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  body form .link-modal a {
+    font-size: 1rem;
+  }
+}
 body form input[type=file] {
   border: none;
   color: aliceblue;
+}
+body .informacoes-filme {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .informacoes-filme .informacoes-filme-selecionado {
+  display: flex;
+  gap: 10px;
+}
+body .informacoes-filme .informacoes-filme-selecionado .poster {
+  border: 2px solid var(--Gradientes-Gradiente-Logo, #9747FF);
+  background: var(--Cores-Cinza-Dark, #1E1F28);
+  box-shadow: 0px -3px 22px 0px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  max-width: 300px;
+  max-height: 400px;
+}
+body .informacoes-filme .informacoes-filme-selecionado .poster:hover {
+  opacity: 0.8;
+}
+body .informacoes-filme .informacoes-filme-selecionado .filme-Titulo {
+  font-size: 1.5rem;
+}
+body .informacoes-filme .informacoes-filme-selecionado .descricao {
+  text-align: justify;
+  margin-top: 20px;
 }
 body .btn {
   background-color: #1E1F28;
