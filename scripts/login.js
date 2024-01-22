@@ -48,9 +48,10 @@ async function GetLogin(email, senha) {
 
         $('.body-loader').toggle();
         console.log("Usuario autenticado: " + data);
+        setCookie(`Usuario Autenticado`,email,1);
         window.location.href = window.location.href.replace('Login', 'Filmes');
+
     }
-    //redirecionar aqui 
 }
 
 async function PostUser(email, senha) {
@@ -136,3 +137,10 @@ async function NovoUsuario() {
     const resp = await PostUser(email, senha);
 }
 
+
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/CineAdmin";
+  }

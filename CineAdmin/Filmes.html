@@ -18,107 +18,25 @@
     <!-- <div class="Cine-Admin-Filmes"> -->
     <aside>
         <nav class="mb-4 navbar navbar-expand-lg navbar-dark cyan menu" id='menu'>
-            <a class="navbar-brand font-bold navbar-logo" href="#">Cine Admin</a>
+            <a class="navbar-brand font-bold navbar-logo" href="#" onclick="carregaTodosFilmes();">Cine Admin</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
                 aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                 <ul class="navbar-nav ml-auto">
-                    <!-- <li class="nav-item active">
-                            <a class="nav-link navbar-item" href="#"><i class="fa fa-envelope"></i> Filmes <span
-                                    class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link navbar-item" href="#"><i class="fa fa-gear"></i> Adicionar Novo </a>
-                        </li> -->
-                    <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Profile </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                                <a class="dropdown-item" href="#">My account</a>
-                                <a class="dropdown-item" href="#">Log out</a>
-                            </div>
-                        </li> -->
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar Filme"
+                    <input class="form-control mr-sm-2" type="search" placeholder="Nome do Filme" id="Pesquisa-nome"
                         aria-label="Pesquisar">
-                    <button class="btn my-2 my-sm-0 grow" type="button"><img src="/imgs/search.png"></button>
+                    <button class="btn my-2 my-sm-0 grow" type="button" onclick="pesquisaFilmeEspecifico();"><img src="/imgs/search.png"></button>
                 </form>
             </div>
         </nav>
     </aside>
 
     <main class="container-filmes">
-        <div class="lista-de-Filmes">
-
-            <div class="card">
-                <div class="sessao-1 hidden">
-                    <p class="titulo">Novo Filme</p>
-                    <p class="nota ">5.0<img src="/imgs/estrela.png"></p>
-                </div>
-                <img class="poster" src="/imgs/cartaz-generico.jpg">
-                <div class="informacoes-adicionais hidden">
-                    <div class="duracao"><img src="/imgs/Clock.png">1:54:00</div>
-                    <div class="ano-lancamento"><img src="/imgs/CalendarBlank.png">2023</div>
-                </div>
-                <button class="btn-card grow" data-toggle="modal" data-target="#modal-cadastro-filme">
-                    <img src="/imgs/icon-plus.png">
-                    <p>Novo Filme</p>
-                </button>
-
-            </div>
-
-            <div class="card">
-                <div class="sessao-1">
-                    <p class="titulo">Barbie</p>
-                    <p class="nota">4.9 <img src="/imgs/estrela.png"></p>
-                </div>
-                <img class="poster" src="/imgs/barbie.png">
-                <div class="informacoes-adicionais">
-                    <div class="duracao"><img src="/imgs/Clock.png">1:54:00</div>
-                    <div class="ano-lancamento"><img src="/imgs/CalendarBlank.png">2023</div>
-                </div>
-                <button class="btn-card grow" data-target="#modal-informacao-filme" data-toggle="modal">
-                    <img src="/imgs/icone-info.png">
-                    <p>Informações</p>
-                </button>
-            </div>
-
-
-            <div class="card">
-                <div class="sessao-1">
-                    <p class="titulo">Oppenheimer</p>
-                    <p class="nota">4.9 <img src="/imgs/estrela.png"></p>
-                </div>
-                <img class="poster" src="/imgs/open.png">
-                <div class="informacoes-adicionais">
-                    <div class="duracao"><img src="/imgs/Clock.png">3:00:00</div>
-                    <div class="ano-lancamento"><img src="/imgs/CalendarBlank.png">2023</div>
-                </div>
-                <div class="btn-card grow">
-                    <img src="/imgs/icone-info.png">
-                    <p>Informações</p>
-                </div>
-
-            </div>
-
-            <div class="card">
-                <div class="sessao-1">
-                    <p class="titulo">Indiana Jones</p>
-                    <p class="nota">4.9 <img src="/imgs/estrela.png"></p>
-                </div>
-                <img class="poster" src="/imgs/indiana.png">
-                <div class="informacoes-adicionais">
-                    <div class="duracao"><img src="/imgs/Clock.png">2:22:00</div>
-                    <div class="ano-lancamento"><img src="/imgs/CalendarBlank.png">2023</div>
-                </div>
-                <div class="btn-card grow">
-                    <img src="/imgs/icone-info.png">
-                    <p>Informações</p>
-                </div>
-            </div>
-
+        <div class="lista-de-Filmes" id="lista-de-Filmes">
         </div>
     </main>
     <!--Modal de Novo filme-->
@@ -132,31 +50,29 @@
                     </button>
                 </div>
                 <div class="modal-body">
+
                     <form id="cadastro-filme">
-                        <!-- <input class="campo" id="NovoNome" type="text" placeholder="Seu nome" /> -->
                         <label for="Titulo">Titulo:</label>
-                        <input class="campo" type="email" id="Titulo" name="Titulo" placeholder="Titulo" />
+                        <input class="campo" type="text" id="Titulo" name="Titulo" placeholder="Titulo" />
 
                         <label for="Genero">Genero:</label>
                         <input class="campo" type="text" id="Genero" placeholder="Genero" />
 
                         <label for="AnoLancamento">Ano de Lançamento:</label>
-                        <input class="campo" type="number" id="AnoLancamento" maxlength="4"
+                        <input type="number" data-maxlength="4" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="campo" id="AnoLancamento" maxlength="4"
                             placeholder="Ano de Lançamento" />
 
                         <label for="Duracao">Duração:</label>
                         <input class="campo" type="text" id="Duracao" placeholder="Duração" />
 
                         <label for="Nota">Nota:</label>
-                        <input class="campo" type="text" id="Nota" placeholder="Nota" />
+                        <input class="campo" type="text" id="Nota" placeholder="Nota" maxlength="3"/>
 
-                        <label for="Titulo">Imagem</label>
+                        <label for="Imagem">Imagem</label>
                         <input class="campo" type="file" id="Imagem" placeholder="Imagem" />
 
                         <label for="Descricao">Descrição:</label>
                         <textarea id="Descricao" class="campo" rows="4" cols="50" placeholder="Descrição"></textarea>
-                        <!-- <input class="campo" type="text" id="Descricao" placeholder="Descrição" /> -->
-
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -170,52 +86,11 @@
     <div class="modal fade" id="modal-informacao-filme" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-              <!--   <div class="modal-header">
-                     <h5 class="modal-title" id="">Informações</h5> 
-                </div>-->
                 <div class="modal-body">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <div class="informacoes-filme" id="informacoes-filme">
-                        <!-- <input class="campo" id="NovoNome" type="text" placeholder="Seu nome" /> -->
-                        <div class="informacoes-filme-selecionado">
-                            <!-- <p>Titulo:</p> -->
-                            <p  class="filme-Titulo" id="informacoes-filme-Titulo">Barbie</p>
-                        </div>
-
-                        <div class="informacoes-filme-selecionado">
-                            <!-- <p>Poster:</p> -->
-                            <img class="poster" d="informacoes-filme-Poster" src="/imgs/barbie.png">
-                        </div>
-
-                        <div class="informacoes-filme-selecionado">
-                            <!-- <p>Descrição:</p> -->
-                            <p class="descricao" id="informacoes-filme-Descricao">Barbie é uma comédia visualmente deslumbrante
-                                cujo meta humor é inteligentemente complementado por uma narrativa subversiva
-                                Barbie é uma comédia visualmente deslumbrante</p>
-                        </div>
-
-                        <div class="informacoes-filme-selecionado">
-                            <p class="">Genero:</p>
-                            <p id="informacoes-filme-Genero">Comedia</p>
-                        </div>
-
-                        <div class="informacoes-filme-selecionado">
-                            <p class="">Ano de Lançamento:</p>
-                            <p id="informacoes-filme-AnoLancamento">2023</p>
-                        </div>
-
-                        <div class="informacoes-filme-selecionado">
-                            <p class="">Duração:</p>
-                            <p id="informacoes-filme-Duracao">1:54:00</p>
-                        </div>
-
-                        <div class="informacoes-filme-selecionado">
-                            <p class="">Nota:</p>
-                            <p id="informacoes-filme-Nota">4.9</p>
-                        </div>
-
                     </div>
                 </div>
 
@@ -224,6 +99,11 @@
     </div>
 
     </div>
+
+    <div class="body-loader" style="display: none;">
+        <div class="loader"></div>
+      </div>
+
 </body>
 
 </html>
@@ -239,4 +119,5 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/scripts/cineAdmin.js"></script>

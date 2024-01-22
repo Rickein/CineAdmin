@@ -14,9 +14,8 @@ body {
             transform: rotate(360deg);
         }
     }
-
+    
     .body-loader {
-
         @include mixins.width_height(100%, 100%);
         @extend %flexivel-centralizado;
         @extend %corpo-carregamento;
@@ -81,14 +80,14 @@ body {
             display: flex;
             align-items: flex-start;
             flex-wrap: wrap;
-            gap: 36px;
+            gap: 30px;
 
             @media (max-width: 767px) {
                 flex-wrap: wrap;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 36px;
+                gap: 30px;
             }
 
             .card {
@@ -98,11 +97,12 @@ body {
                 .sessao-1 {
                     @extend %flexivel-space-between;
                     align-self: stretch;
+                    gap: 3px;
 
                     .titulo {
                         @include mixins.tamanho_letra_e_cor(16px, var(--Cores-Branco, #FFF));
                         white-space: nowrap;
-                        line-height: 100%;
+                        // line-height: 100%;
                         overflow: hidden;
                         text-overflow: ellipsis;
                     }
@@ -243,6 +243,10 @@ body {
             .descricao {
                 text-align: justify;
                 margin-top: 20px;
+            }
+
+            .icons{
+                @include mixins.width_height(20px, 20px);
             }
         }
 
