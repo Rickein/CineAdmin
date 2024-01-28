@@ -44,6 +44,64 @@ function NovoFilme() {
 
 }
 
+function RemoverFilme(id) {
+  DeleteFilme(id);
+}
+
+async function DeleteFilme(id) {
+
+  $('.body-loader').toggle();
+
+  const { error } = await database
+    .from('Filmes')
+    .delete()
+    .eq('id', id)
+
+    if (error) {
+
+      $('.body-loader').toggle();
+  
+      Swal.fire({
+        title: "Algo deu errado!",
+        text: error.message,
+        icon: "error"
+      });
+      console.log(error);
+      return
+    }
+    else {
+      deleteImagem();
+
+      $('.body-loader').toggle();
+  
+      Swal.fire({
+        title: "Removido!",
+        text: "Filme removido com sucesso",
+        icon: "success"
+      })
+        .then((value) => {
+          $('#modal-informacao-filme').modal('toggle');
+          carregaTodosFilmes();
+        });
+    }
+
+}
+
+async function deleteImagem(){
+  
+var nomeFilme = $(`#informacoes-filme-Poster`)[0].src;
+var linkFormatado = nomeFilme.slice(74);
+
+  const { data, error } = await database
+  .storage
+  .from('Posters')
+  .remove([`${linkFormatado}`])
+  if(error){
+    console.log(error);
+  }
+}
+
+
 async function PostFilme(titulo, genero, anoLancamento, duracao, nota, url, descricao) {
 
   const { data, error } = await database
@@ -134,16 +192,16 @@ async function carregaTodosFilmes() {
 
     var minhalista =
       `<div class="card" id="NovoFilme">
-   <div class="sessao-1 hidden">
-      <p class="titulo">Novo Filme</p>
-      <p class="nota ">5.0<img src="/imgs/estrela.png"></p>
-  </div>
-  <img class="poster" src="/imgs/film-1.png">
-  <div class="informacoes-adicionais hidden">
-      <div class="duracao"><img src="/imgs/Clock.png">1:54:00</div>
-      <div class="ano-lancamento"><img src="/imgs/CalendarBlank.png">2023</div>
-  </div>
-  <button class="btn-card grow" data-toggle="modal" data-target="#modal-cadastro-filme">
+       <div class="sessao-1 hidden">
+       <p class="titulo">Novo Filme</p>
+       <p class="nota ">5.0<img src="/imgs/estrela.png"></p>
+       </div>
+       <img class="poster" src="/imgs/film-1.png">
+       <div class="informacoes-adicionais hidden">
+       <div class="duracao"><img src="/imgs/Clock.png">1:54:00</div>
+       <div class="ano-lancamento"><img src="/imgs/CalendarBlank.png">2023</div>
+      </div>
+      <button class="btn-card grow" data-toggle="modal" data-target="#modal-cadastro-filme">
       <!-- <img src="/imgs/icon-plus.png"> -->
       <p>Novo Filme</p>
   </button>
@@ -276,7 +334,7 @@ async function maisInformacoesFilme(ID) {
                     <p class="filme-Titulo" id="informacoes-filme-Titulo">${filmes.data[i].Filme}</p>
                 </div>
                 <div class="informacoes-filme-selecionado">
-                    <img class="poster" d="informacoes-filme-Poster" src="${filmes.data[i].Poster}">
+                    <img class="poster" id="informacoes-filme-Poster" src="${filmes.data[i].Poster}">
                 </div>
                 <div class="informacoes-filme-selecionado">
   
@@ -302,7 +360,12 @@ async function maisInformacoesFilme(ID) {
                     <p class="">Nota:</p>
                     <p id="informacoes-filme-Nota">${filmes.data[i].Nota}</p>
                 </div>
-                `
+                <div class="informacoes-filme-selecionado flex"style="width: 80%;">
+                  <button class="btn-card grow remover" onclick="RemoverFilme(${filmes.data[i].id});">
+              
+                  <p>Remover Filme</p>
+                  </button>
+                  </div>`
       $('.body-loader').toggle();
       $('#informacoes-filme')[0].innerHTML = minhalista;
     }
@@ -313,13 +376,15 @@ $(function () {
 });
 
 
+
+
 function checkCookie() {
 
   let user = getCookie("Usuario Autenticado");
   if (user != "") {
-   console.log(`Usuario autenticado`);
+    console.log(`Usuario autenticado`);
 
-   carregaTodosFilmes();
+    carregaTodosFilmes();
 
   } else {
     autenticar();
@@ -329,7 +394,7 @@ function checkCookie() {
 function getCookie(cname) {
   let name = cname + "=";
   let ca = document.cookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
+  for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
     while (c.charAt(0) == ' ') {
       c = c.substring(1);
@@ -341,26 +406,26 @@ function getCookie(cname) {
   return "";
 }
 
-function autenticar() {      
+function autenticar() {
   let timerInterval;
   Swal.fire({
-      title: "Usuario Nao Autenticado!",
-      html: "Você será redirecionado em alguns segundos.",
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: () => {
-          Swal.showLoading();
-          timerInterval = setInterval(() => {
+    title: "Usuario Nao Autenticado!",
+    html: "Você será redirecionado em alguns segundos.",
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+      timerInterval = setInterval(() => {
 
-          }, 100);
-      },
-      willClose: () => {
-          clearInterval(timerInterval);
-      }
+      }, 100);
+    },
+    willClose: () => {
+      clearInterval(timerInterval);
+    }
   }).then((result) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-          window.location.href = 'http://127.0.1:5500/CineAdmin/Login.html'
-      }
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+      window.location.href = 'http://127.0.1:5500/CineAdmin/Login.html'
+    }
   });
 }

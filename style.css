@@ -1,5 +1,5 @@
 body .body-loader, body .page, body .container-filmes .lista-de-Filmes .card .informacoes-adicionais .duracao,
-body .container-filmes .lista-de-Filmes .card .informacoes-adicionais .ano-lancamento, body .container-filmes .lista-de-Filmes .card .btn-card, body .modal-content .modal-footer {
+body .container-filmes .lista-de-Filmes .card .informacoes-adicionais .ano-lancamento, body .container-filmes .lista-de-Filmes .card .btn-card, body .informacoes-filme .informacoes-filme-selecionado .btn-card, body .modal-content .modal-footer, .flex {
   display: flex;
   align-items: center;
   align-content: center;
@@ -279,6 +279,20 @@ body .informacoes-filme .informacoes-filme-selecionado .descricao {
 body .informacoes-filme .informacoes-filme-selecionado .icons {
   width: 20px;
   height: 20px;
+}
+body .informacoes-filme .informacoes-filme-selecionado .btn-card {
+  gap: 15px;
+  width: 100%;
+  border-radius: 4px;
+  background: var(--Cores-Cinza, #2B2B37);
+  cursor: pointer;
+  border: none;
+}
+body .informacoes-filme .informacoes-filme-selecionado .btn-card p {
+  font-size: 16px;
+  color: var(--Cores-Branco, #FFF);
+  text-wrap: nowrap;
+  padding-top: 15px;
 }
 body .btn {
   background-color: #1E1F28;
